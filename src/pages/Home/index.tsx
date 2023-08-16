@@ -2,6 +2,7 @@ import { clear } from "console";
 import CardTimer from "../../components/CardTimer"
 import React from "react";
 import { useState, useEffect } from "react";
+import styles from './home.module.scss';
 
 
 export default function Home() {
@@ -183,7 +184,7 @@ export default function Home() {
 
 
     return (
-        <div>
+        <div className={styles.containerHome}>
             <h1>Home</h1>
 
             <CardTimer Minutes={minutes} ShortBreak={shortBreak} LongBreak={longBreak} Seconds={seconds} Running={running} Start={() => Start()} Pause={() => Pause()} Reload={() => Reload()} FocusTimer={() => FocusTimer()} ShortTimer={() => ShortTimer()} LongTimer={() => LongTimer()} Short={short} />

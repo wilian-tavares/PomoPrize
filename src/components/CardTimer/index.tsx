@@ -1,4 +1,6 @@
 import React from "react";
+import styles from './cardTimer.module.scss';
+import { TbPlayerTrackNextFilled} from 'react-icons/tb'
 
 interface CardtimerProps {
     Minutes: number;
@@ -20,15 +22,15 @@ interface CardtimerProps {
 }
 
 
-export default function CardTimer({Minutes, ShortBreak, 
-                                  LongBreak, Seconds,
-                                  Running, Pause, Start, Reload, 
-                                  FocusTimer, ShortTimer, LongTimer,
-                                  Short,
-                                    }: CardtimerProps){
-    return(
-        <div>
-            <div>
+export default function CardTimer({ Minutes, ShortBreak,
+    LongBreak, Seconds,
+    Running, Pause, Start, Reload,
+    FocusTimer, ShortTimer, LongTimer,
+    Short,
+}: CardtimerProps) {
+    return (
+        <div className={styles.cardContainer}>
+            <div className={styles.shieldButtons}>
                 <button onClick={FocusTimer}>Pomofocus</button>
                 <button onClick={ShortTimer}>Short Break</button>
                 <button onClick={LongTimer}>Long Break</button>
@@ -37,30 +39,27 @@ export default function CardTimer({Minutes, ShortBreak,
                 (Short) ? Minutes = 5 : Minutes = Minutes
             } */}
 
-            <strong>{(Minutes < 10 ) ? `0${Minutes}` : Minutes}: {(Seconds < 10) ? `0${Seconds}` : Seconds}</strong>
-            
-               
-       
-            {
-                
-            
-                    (Running ) ? 
-                    <button onClick={Pause}>PAUSE</button> :
-                    <button onClick={Start}>START</button> 
-                
+            <strong>{(Minutes < 10) ? `0${Minutes}` : Minutes} : {(Seconds < 10) ? `0${Seconds}` : Seconds}</strong>
 
-            }
-            {
-                (Running) ?
-                <button onClick={Reload}>Reload</button> : null
-            }
 
-            
+            <div className={styles.shieldPlay}>
+                {
+                    (Running) ?
+                        <button className={styles.play} onClick={Pause}>PAUSE</button> :
+                        <button className={styles.play} onClick={Start}>START</button>
+                }
 
-            {/* {
-                (Seconds === 0 && Minutes === 0 && Running === false) ?
-                <button>Voltar</button> : null               
-            } */}
+                {
+                    (Running) ?
+                        <button className={styles.reload} onClick={Reload}>{ <TbPlayerTrackNextFilled size='40'/>}</button> : null
+                }
+
+
+            </div>
+
+
+
+
 
         </div>
     )
