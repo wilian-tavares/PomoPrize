@@ -1,0 +1,20 @@
+#Header {
+    background-color: red;
+    height: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    #logo {
+        margin-left: 94px;
+        color: var(--white)
+    }
+    button {
+        margin-right: 94px;
+        width: 100px;
+        height: 30px;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+}
