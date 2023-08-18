@@ -3,6 +3,7 @@ import CardTimer from "../../components/CardTimer"
 import React from "react";
 import { useState, useEffect } from "react";
 import styles from './home.module.scss';
+import Header from "../../components/Header";
 
 
 export default function Home() {
@@ -22,7 +23,7 @@ export default function Home() {
 
     const [stage, setStage] = useState<number>(1)
 
-     const [theme, setTheme] = useState<string>('')
+    const [theme, setTheme] = useState<string>('')
 
     // funções Timer
 
@@ -198,25 +199,30 @@ export default function Home() {
 
 
     return (
-        <div className={`${styles.containerHome} ${styles[theme]}`}>
-            <h1>Home</h1>
+        <>
+            <Header theme={theme} />
 
-            <CardTimer
-                  theme={theme}
 
-                Minutes={minutes}
-                ShortBreak={shortBreak}
-                LongBreak={longBreak}
-                Seconds={seconds}
-                Running={running}
-                Start={() => Start()}
-                Pause={() => Pause()}
-                Reload={() => Reload()}
-                FocusTimer={() => FocusTimer()}
-                ShortTimer={() => ShortTimer()}
-                LongTimer={() => LongTimer()}
-                Short={short} />
+            <div className={`${styles.containerHome} ${styles[theme]}`}>
 
-        </div>
+
+                <CardTimer
+                    theme={theme}
+
+                    Minutes={minutes}
+                    ShortBreak={shortBreak}
+                    LongBreak={longBreak}
+                    Seconds={seconds}
+                    Running={running}
+                    Start={() => Start()}
+                    Pause={() => Pause()}
+                    Reload={() => Reload()}
+                    FocusTimer={() => FocusTimer()}
+                    ShortTimer={() => ShortTimer()}
+                    LongTimer={() => LongTimer()}
+                    Short={short} />
+
+            </div>
+        </>
     )
 }

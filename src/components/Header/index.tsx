@@ -12,9 +12,10 @@ export default function Header({ theme }: HeaderProps) {
 
 
     return (
-         <div  id={styles.header} className={`styles.${theme}`}>
+         <div  id={styles.header} className={styles[theme]}>
        
             <h1 id={styles.logo}>Pomofocus-XP</h1>
+
             
 
             <button>
