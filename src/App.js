@@ -1,10 +1,10 @@
  import styles from './styles/global.module.scss';
-import RoutesApp from './routes';
+import Home from './pages/Home';
 
 function App() {
   return (
     <div>
-      <RoutesApp />
+      <Home />
     </div>
    )
 }
