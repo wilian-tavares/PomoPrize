@@ -22,6 +22,8 @@ export default function Home() {
 
     const [stage, setStage] = useState<number>(1)
 
+     const [theme, setTheme] = useState<string>('')
+
     // funções Timer
 
     function FocusTimer() {
@@ -58,7 +60,7 @@ export default function Home() {
     }
     function Reload() {
 
-        if(focus === true && stage < 4) {
+        if (focus === true && stage < 4) {
             setShort(true)
             setFocus(false)
             setLong(false)
@@ -77,9 +79,9 @@ export default function Home() {
             setStage(1)
             setRunning(false)
 
-        } 
-        
-        else if (short === true){
+        }
+
+        else if (short === true) {
             setFocus(true)
             setLong(false)
             setShort(false)
@@ -87,7 +89,7 @@ export default function Home() {
             setRunning(false)
 
         }
-        else if(long === true) {
+        else if (long === true) {
             setFocus(true)
             setLong(false)
             setShort(false)
@@ -160,7 +162,7 @@ export default function Home() {
             setRunning(false)
 
         }
-        else if(seconds === 0 && minutes === 0 && short === true ) {
+        else if (seconds === 0 && minutes === 0 && short === true) {
             setFocus(true)
             setShort(false)
             setLong(false)
@@ -170,7 +172,7 @@ export default function Home() {
         }
 
 
-        else if(seconds === 0 && minutes === 0 &&  long === true) {
+        else if (seconds === 0 && minutes === 0 && long === true) {
             setFocus(true)
             setShort(false)
             setLong(false)
@@ -181,13 +183,39 @@ export default function Home() {
     }, [seconds, minutes,])
 
 
+    useEffect(() => {
+
+        if (focus === true) {
+            setTheme('focus')
+        }
+        else if (short === true) {
+            setTheme('short')
+        }
+        else if (long === true) {
+            setTheme('long')
+        }
+    }, [focus, short, long])
 
 
     return (
-        <div className={styles.containerHome}>
+        <div className={`${styles.containerHome} ${styles[theme]}`}>
             <h1>Home</h1>
 
-            <CardTimer Minutes={minutes} ShortBreak={shortBreak} LongBreak={longBreak} Seconds={seconds} Running={running} Start={() => Start()} Pause={() => Pause()} Reload={() => Reload()} FocusTimer={() => FocusTimer()} ShortTimer={() => ShortTimer()} LongTimer={() => LongTimer()} Short={short} />
+            <CardTimer
+                  theme={theme}
+
+                Minutes={minutes}
+                ShortBreak={shortBreak}
+                LongBreak={longBreak}
+                Seconds={seconds}
+                Running={running}
+                Start={() => Start()}
+                Pause={() => Pause()}
+                Reload={() => Reload()}
+                FocusTimer={() => FocusTimer()}
+                ShortTimer={() => ShortTimer()}
+                LongTimer={() => LongTimer()}
+                Short={short} />
 
         </div>
     )

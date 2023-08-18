@@ -6,7 +6,7 @@ import Header from './components/Header';
 export default function RoutesApp() {
     return (
         <BrowserRouter>
-            <Header />
+            <Header theme={Home.theme} />
             <Routes>
                 <Route path="/" element={<Home />} />
             </Routes>

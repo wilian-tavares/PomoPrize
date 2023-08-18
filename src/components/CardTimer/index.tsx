@@ -16,8 +16,9 @@ interface CardtimerProps {
     FocusTimer: () => void;
     ShortTimer: () => void;
     LongTimer: () => void;
-
+    
     Short: boolean;
+    theme: string;
 
 }
 
@@ -26,10 +27,10 @@ export default function CardTimer({ Minutes, ShortBreak,
     LongBreak, Seconds,
     Running, Pause, Start, Reload,
     FocusTimer, ShortTimer, LongTimer,
-    Short,
+    Short, theme
 }: CardtimerProps) {
     return (
-        <div className={styles.cardContainer}>
+        <div className={`${styles.cardContainer} ${styles[theme]}`}>
             <div className={styles.shieldButtons}>
                 <button onClick={FocusTimer}>Pomofocus</button>
                 <button onClick={ShortTimer}>Short Break</button>

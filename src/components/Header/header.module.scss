@@ -1,5 +1,8 @@
-#Header {
-    background-color: var(--primary-1);
+#header {
+    // background-color: var(--primary2); // focus
+    //background-color: var(--blue2);    // short
+    background-color: var(--success);    // long
+    
     height: 70px;
     width: 100%;
     display: flex;
@@ -8,7 +11,8 @@
 
     #logo {
         margin-left: 94px;
-        color: var(--white)
+        color: var(--white);
+        
     }
     button {
         margin-right: 94px;
@@ -17,4 +21,19 @@
         border-radius: 8px;
         cursor: pointer;
     }
+}
+
+.focus {
+    background-color: var(--primary2);
+
+}
+
+.short {
+    background-color: var(--blue2);
+
+}
+
+.long {
+    background-color: var(--success2);
+
 }
