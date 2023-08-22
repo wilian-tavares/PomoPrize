@@ -7,11 +7,25 @@ import { AiOutlineClose, AiOutlineClockCircle } from 'react-icons/ai';
 
 interface HeaderProps {
     theme: string;
+    newMinutes: number;
+    newShort: number;
+    newLong: number;
+
+    HandleFocus: (newMinutes: number) => void;
+    HandleShort: (newShort: number) => void;
+    HandleLong: (newLong: number) => void;
 }
 
 
 
-export default function Header({ theme }: HeaderProps) {
+export default function Header({ theme, 
+                                HandleFocus, 
+                                HandleShort, 
+                                HandleLong, 
+                                newMinutes, 
+                                newShort,
+                                newLong,
+                            }: HeaderProps) {
 
     const customStyles = {
         content: {
@@ -79,17 +93,32 @@ export default function Header({ theme }: HeaderProps) {
                         <div className={styles.shieldInputs}>
                             <div>
                                 <p>Pomofocus</p>
-                                <input type='number' min={1} />
+                                <input
+                                    type='number'
+                                    min={1}
+                                    value={newMinutes}
+                                    onChange={(e) => HandleFocus(Number(e.target.value))}
+                                />
                             </div>
 
                             <div>
                                 <p>Short-Break</p>
-                                <input type='number' min={1} />
+                                <input 
+                                    type='number' 
+                                    min={1}
+                                    value={newShort}
+                                    onChange={(e) => HandleShort(Number(e.target.value))} 
+                                />
                             </div>
 
                             <div>
                                 <p>Lon-Break</p>
-                                <input type='number' min={1} />
+                                <input 
+                                    type='number' 
+                                    min={1} 
+                                    value={newLong}
+                                    onChange={(e) => HandleLong(Number(e.target.value))}
+                                />
                             </div>
                         </div>
 

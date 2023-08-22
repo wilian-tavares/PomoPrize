@@ -8,7 +8,7 @@ import Header from "../../components/Header";
 
 export default function Home() {
 
-    const [minutes, setMinutes] = useState<number>(11);
+    const [minutes, setMinutes] = useState<number>(25);
     const [shortBreak, setShortBreak] = useState<number>(5);
     const [longBreak, setLongBreak] = useState<number>(15);
     const [seconds, setSeconds] = useState<number>(0)
@@ -198,10 +198,27 @@ export default function Home() {
     }, [focus, short, long])
 
 
+
+    function handleFocus(newMinutes: number) {
+        setMinutes(newMinutes);
+    }
+    function handleShort(newShort: number){
+        setShortBreak(newShort);
+    }
+    function handleLong(newLong: number){
+        setLongBreak(newLong);
+    }
+
     return (
         <>
-            <Header theme={theme} />
-
+             <Header 
+                theme={theme}
+                HandleFocus={handleFocus}
+                HandleShort={handleShort}
+                HandleLong={handleLong} 
+                newMinutes={minutes} 
+                newShort={shortBreak} 
+                newLong={longBreak}             />
 
             <div className={`${styles.containerHome} ${styles[theme]}`}>
 
