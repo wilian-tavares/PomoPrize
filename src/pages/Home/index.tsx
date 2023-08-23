@@ -4,12 +4,32 @@ import React from "react";
 import { useState, useEffect } from "react";
 import styles from './home.module.scss';
 import Header from "../../components/Header";
+import { stringify } from "querystring";
 
 
 export default function Home() {
-    const [newFocus, setNewFocus]= useState<number>(25)
-    const [newShort, setNewShort] = useState<number>(5)
-    const [newLong, setNewLong] = useState<number>(15)
+    const [newFocus, setNewFocus] = useState<number>(() => {
+        const newfocusMemory = localStorage.getItem("NewFocus");
+        if (newfocusMemory !== null) {
+            return JSON.parse(newfocusMemory) || 0;
+        }
+
+    })
+
+
+    const [newShort, setNewShort] = useState<number>(() => {
+        const newShortMemory = localStorage.getItem("NewShort");
+        if (newShortMemory !== null) {
+            return JSON.parse(newShortMemory) || 0;
+        }
+    })
+
+    const [newLong, setNewLong] = useState<number>(() => {
+        const newLongMemory = localStorage.getItem("NewLong");
+        if (newLongMemory !== null) {
+            return JSON.parse(newLongMemory) || 0;
+        }
+    })
 
     const [minutes, setMinutes] = useState<number>(newFocus);
     const [shortBreak, setShortBreak] = useState<number>(newShort);
@@ -206,37 +226,36 @@ export default function Home() {
         setNewFocus(newFocus);
         setMinutes(newFocus);
     }
-    function handleShort(newShort: number){
+    function handleShort(newShort: number) {
         setNewShort(newShort);
         setShortBreak(newShort);
     }
-    function handleLong(newLong: number){
+    function handleLong(newLong: number) {
         setNewLong(newLong);
         setLongBreak(newLong);
     }
 
-  
-useEffect(() => {
 
-    handleFocus(newFocus);
-    // handleShort(newShort);
-    // handleLong(newLong);
-    
-}, [newFocus])
+    useEffect(() => {
+        localStorage.setItem("NewFocus", JSON.stringify(newFocus));
+        localStorage.setItem("NewShort", JSON.stringify(newShort));
+        localStorage.setItem("NewLong", JSON.stringify(newLong));
+    }, [newFocus, newShort, newLong])
+
 
     return (
         <>
-             <Header 
+            <Header
                 theme={theme}
                 HandleFocus={handleFocus}
                 HandleShort={handleShort}
-                HandleLong={handleLong} 
-               
-                newFocus={newFocus}
-                newShort={newShort} 
-                newLong={newLong}    
+                HandleLong={handleLong}
 
-                         />
+                newFocus={newFocus}
+                newShort={newShort}
+                newLong={newLong}
+
+            />
 
             <div className={`${styles.containerHome} ${styles[theme]}`}>
 
