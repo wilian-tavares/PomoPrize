@@ -7,13 +7,16 @@ import { AiOutlineClose, AiOutlineClockCircle } from 'react-icons/ai';
 
 interface HeaderProps {
     theme: string;
-    newMinutes: number;
+    newFocus: number;
     newShort: number;
     newLong: number;
 
     HandleFocus: (newMinutes: number) => void;
     HandleShort: (newShort: number) => void;
     HandleLong: (newLong: number) => void;
+
+  
+ 
 }
 
 
@@ -22,10 +25,12 @@ export default function Header({ theme,
                                 HandleFocus, 
                                 HandleShort, 
                                 HandleLong, 
-                                newMinutes, 
+                                newFocus, 
                                 newShort,
                                 newLong,
+                               
                             }: HeaderProps) {
+
 
     const customStyles = {
         content: {
@@ -96,7 +101,7 @@ export default function Header({ theme,
                                 <input
                                     type='number'
                                     min={1}
-                                    value={newMinutes}
+                                    value={newFocus}
                                     onChange={(e) => HandleFocus(Number(e.target.value))}
                                 />
                             </div>

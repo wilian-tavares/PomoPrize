@@ -7,10 +7,13 @@ import Header from "../../components/Header";
 
 
 export default function Home() {
+    const [newFocus, setNewFocus]= useState<number>(25)
+    const [newShort, setNewShort] = useState<number>(5)
+    const [newLong, setNewLong] = useState<number>(15)
 
-    const [minutes, setMinutes] = useState<number>(25);
-    const [shortBreak, setShortBreak] = useState<number>(5);
-    const [longBreak, setLongBreak] = useState<number>(15);
+    const [minutes, setMinutes] = useState<number>(newFocus);
+    const [shortBreak, setShortBreak] = useState<number>(newShort);
+    const [longBreak, setLongBreak] = useState<number>(newLong);
     const [seconds, setSeconds] = useState<number>(0)
 
     const [running, setRunning] = useState<boolean>(false);
@@ -125,17 +128,17 @@ export default function Home() {
     useEffect(() => {
 
         if (focus === true) {
-            setMinutes(25)
+            setMinutes(newFocus)
             setSeconds(0)
         }
 
         if (short === true) {
-            setMinutes(5)
+            setMinutes(newShort)
             setSeconds(0)
         }
 
         if (long === true) {
-            setMinutes(15)
+            setMinutes(newLong)
             setSeconds(0)
         }
 
@@ -199,15 +202,27 @@ export default function Home() {
 
 
 
-    function handleFocus(newMinutes: number) {
-        setMinutes(newMinutes);
+    function handleFocus(newFocus: number) {
+        setNewFocus(newFocus);
+        setMinutes(newFocus);
     }
     function handleShort(newShort: number){
+        setNewShort(newShort);
         setShortBreak(newShort);
     }
     function handleLong(newLong: number){
+        setNewLong(newLong);
         setLongBreak(newLong);
     }
+
+  
+useEffect(() => {
+
+    handleFocus(newFocus);
+    // handleShort(newShort);
+    // handleLong(newLong);
+    
+}, [newFocus])
 
     return (
         <>
@@ -216,9 +231,12 @@ export default function Home() {
                 HandleFocus={handleFocus}
                 HandleShort={handleShort}
                 HandleLong={handleLong} 
-                newMinutes={minutes} 
-                newShort={shortBreak} 
-                newLong={longBreak}             />
+               
+                newFocus={newFocus}
+                newShort={newShort} 
+                newLong={newLong}    
+
+                         />
 
             <div className={`${styles.containerHome} ${styles[theme]}`}>
 

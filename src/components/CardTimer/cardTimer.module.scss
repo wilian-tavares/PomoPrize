@@ -102,3 +102,14 @@
     
     
 }
+
+@media(max-width: 700px) {
+    .shieldPlay {
+        
+    }
+    .reload {
+        color: blue;
+        position: static;
+        right: 0;
+    }
+}
