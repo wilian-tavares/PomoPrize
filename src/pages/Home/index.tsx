@@ -4,10 +4,18 @@ import React from "react";
 import { useState, useEffect } from "react";
 import styles from './home.module.scss';
 import Header from "../../components/Header";
-import { stringify } from "querystring";
+
+import chalenges from "../../service/challenges";
+import challenges from "../../service/challenges";
+
+
 
 
 export default function Home() {
+
+
+
+
     const [newFocus, setNewFocus] = useState<number>(() => {
         const newfocusMemory = localStorage.getItem("NewFocus");
         if (newfocusMemory !== null) {
@@ -47,6 +55,19 @@ export default function Home() {
     const [stage, setStage] = useState<number>(1)
 
     const [theme, setTheme] = useState<string>('')
+
+
+    // pointes
+
+    const[myPoints, setMyPoints] = useState<number>(() => {
+        const myPointsMemory = localStorage.getItem("Points");
+        if(myPointsMemory !== null) {
+            return JSON.parse(myPointsMemory) || 0;
+        }
+    })
+
+    const [challengeCompleted, setChallengeCompleted] = useState<boolean>(false);
+
 
     // funções Timer
 
@@ -167,24 +188,36 @@ export default function Home() {
     }, [focus, short, long])
 
     useEffect(() => {
-        if (seconds === 0 && minutes === 0 && focus === true && stage < 4) {
+        if (seconds === 0 && minutes === 0 && focus === true && stage < 4) { // getChallenge False
             setFocus(false)
-            setShort(true)
+            setShort(false)
             setLong(false)
+            
             console.log('Acabou o FOCUS > SHORT')
             console.log(stage)
             setStage((prevStage) => prevStage + 1)
             setRunning(false)
-
         }
+
+        // else if (seconds === 0 && minutes === 0 && focus === true && stage < 4) {
+        //     setFocus(false)
+        //     setShort(false)
+        //     setLong(false)
+            
+        //     console.log('Acabou o FOCUS > SHORT')
+        //     console.log(stage)
+        //     setStage((prevStage) => prevStage + 1)
+        //     setRunning(false)
+
+        // }
+
         else if (seconds === 0 && minutes === 0 && focus === true && stage === 4) {
             setFocus(false)
             setShort(false)
-            setLong(true)
+            setLong(false)
             console.log('Acabou o FOCUS > LONG')
             setStage(1)
             setRunning(false)
-
         }
         else if (seconds === 0 && minutes === 0 && short === true) {
             setFocus(true)
@@ -220,7 +253,18 @@ export default function Home() {
         }
     }, [focus, short, long])
 
+    // CHALLENGES
 
+    function getChallenge(){
+        const numbersort = Math.floor(Math.random() * 50) + 1;
+        const sorteado =chalenges[numbersort]
+        console.log(sorteado)
+    }
+   
+
+useEffect(() => {
+    getChallenge()
+})
 
     function handleFocus(newFocus: number) {
         setNewFocus(newFocus);
@@ -256,7 +300,6 @@ export default function Home() {
                 newLong={newLong}
 
             />
-
             <div className={`${styles.containerHome} ${styles[theme]}`}>
 
 
@@ -274,7 +317,8 @@ export default function Home() {
                     FocusTimer={() => FocusTimer()}
                     ShortTimer={() => ShortTimer()}
                     LongTimer={() => LongTimer()}
-                    Short={short} />
+                    Short={short} 
+                    ChallengeCompleted={false} />
 
             </div>
         </>

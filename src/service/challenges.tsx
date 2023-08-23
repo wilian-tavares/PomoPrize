@@ -1,4 +1,11 @@
-const challenges = {
+
+interface ChallengeProps {
+  challenge: string;
+  points: number;
+}
+
+const challenges: { [key: number]: ChallengeProps } = {
+
     1: {"challenge": "Alongamento de braços acima da cabeça", "points": 10},
     2: {"challenge": "Rotação de ombros para frente e para trás", "points": 15},
     3: {"challenge": "Alongamento de pescoço", "points": 8},

@@ -1,6 +1,6 @@
 import React from "react";
 import styles from './cardTimer.module.scss';
-import { TbPlayerTrackNextFilled} from 'react-icons/tb'
+import { TbPlayerTrackNextFilled } from 'react-icons/tb'
 
 interface CardtimerProps {
     Minutes: number;
@@ -9,6 +9,7 @@ interface CardtimerProps {
     Seconds: number;
 
     Running: boolean;
+    ChallengeCompleted: boolean;
     Pause: () => void;
     Start: () => void;
     Reload: () => void;
@@ -16,7 +17,7 @@ interface CardtimerProps {
     FocusTimer: () => void;
     ShortTimer: () => void;
     LongTimer: () => void;
-    
+
     Short: boolean;
     theme: string;
 
@@ -27,7 +28,7 @@ export default function CardTimer({ Minutes, ShortBreak,
     LongBreak, Seconds,
     Running, Pause, Start, Reload,
     FocusTimer, ShortTimer, LongTimer,
-    Short, theme
+    Short, theme, ChallengeCompleted
 }: CardtimerProps) {
     return (
         <div className={`${styles.cardContainer} ${styles[theme]}`}>
@@ -36,14 +37,17 @@ export default function CardTimer({ Minutes, ShortBreak,
                 <button onClick={ShortTimer}>Short Break</button>
                 <button onClick={LongTimer}>Long Break</button>
             </div>
-            {/* {
-                (Short) ? Minutes = 5 : Minutes = Minutes
-            } */}
+
 
             <strong>{(Minutes < 10) ? `0${Minutes}` : Minutes} : {(Seconds < 10) ? `0${Seconds}` : Seconds}</strong>
 
 
             <div className={styles.shieldPlay}>
+                {/* {
+                  (Minutes === 0 && Seconds === 0  ) ? 
+                  <button className={styles.play} onClick={Pause}>GetChallenge</button> : null
+                }
+
                 {
                     (Running) ?
                         <button className={styles.play} onClick={Pause}>PAUSE</button> :
@@ -53,7 +57,42 @@ export default function CardTimer({ Minutes, ShortBreak,
                 {
                     (Running) ?
                         <button className={styles.reload} onClick={Reload}>{ <TbPlayerTrackNextFilled size='40'/>}</button> : null
-                }
+                } */}
+
+
+{
+    (Minutes > 0 || Seconds > 0) && Running ? (
+        <button className={styles.play} onClick={Pause}>PAUSE</button>
+    ) : (
+        (!Running && Minutes === 0 && Seconds === 0) ? null : (
+            Running ? null : (
+                <button className={styles.play} onClick={Start}>START</button>
+            )
+        )
+    )
+}
+
+{
+    (Minutes === 0 && Seconds === 0 && !Running) ? (
+        <button className={styles.play} onClick={Reload}>GetChallenge</button>
+    ) : null
+}
+
+{
+    Running ? (
+        <button className={styles.reload} onClick={Reload}>
+            {<TbPlayerTrackNextFilled size='40' />}
+        </button>
+    ) : null
+}
+
+
+
+
+
+
+
+
 
 
             </div>
