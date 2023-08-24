@@ -6,9 +6,11 @@ import styles from './home.module.scss';
 import Header from "../../components/Header";
 
 import chalenges from "../../service/challenges";
-import challenges from "../../service/challenges";
 
-
+interface CurrentChallengeProps {
+    challenge: string;
+    points: number;
+}
 
 
 export default function Home() {
@@ -21,6 +23,7 @@ export default function Home() {
         if (newfocusMemory !== null) {
             return JSON.parse(newfocusMemory) || 0;
         }
+        return 25;
 
     })
 
@@ -30,6 +33,7 @@ export default function Home() {
         if (newShortMemory !== null) {
             return JSON.parse(newShortMemory) || 0;
         }
+        return 5;
     })
 
     const [newLong, setNewLong] = useState<number>(() => {
@@ -37,6 +41,7 @@ export default function Home() {
         if (newLongMemory !== null) {
             return JSON.parse(newLongMemory) || 0;
         }
+        return 15;
     })
 
     const [minutes, setMinutes] = useState<number>(newFocus);
@@ -59,14 +64,22 @@ export default function Home() {
 
     // pointes
 
-    const[myPoints, setMyPoints] = useState<number>(() => {
+    const [myPoints, setMyPoints] = useState<number>(() => {
         const myPointsMemory = localStorage.getItem("Points");
-        if(myPointsMemory !== null) {
+        if (myPointsMemory !== null) {
             return JSON.parse(myPointsMemory) || 0;
         }
+        return 0;
+
+
     })
 
-    const [challengeCompleted, setChallengeCompleted] = useState<boolean>(false);
+    const [challengeCompleted, setChallengeCompleted] = useState<boolean>(true);
+
+    const [currentChallenge, setCurrentChallenge] = useState<CurrentChallengeProps>({
+        challenge: '',
+        points: 0,
+    })
 
 
     // funções Timer
@@ -187,12 +200,15 @@ export default function Home() {
 
     }, [focus, short, long])
 
+
+
     useEffect(() => {
         if (seconds === 0 && minutes === 0 && focus === true && stage < 4) { // getChallenge False
             setFocus(false)
             setShort(false)
             setLong(false)
-            
+            getChallenge()
+
             console.log('Acabou o FOCUS > SHORT')
             console.log(stage)
             setStage((prevStage) => prevStage + 1)
@@ -203,7 +219,7 @@ export default function Home() {
         //     setFocus(false)
         //     setShort(false)
         //     setLong(false)
-            
+
         //     console.log('Acabou o FOCUS > SHORT')
         //     console.log(stage)
         //     setStage((prevStage) => prevStage + 1)
@@ -237,7 +253,7 @@ export default function Home() {
             setRunning(false)
         }
 
-    }, [seconds, minutes,])
+    }, [seconds, minutes])
 
 
     useEffect(() => {
@@ -255,16 +271,11 @@ export default function Home() {
 
     // CHALLENGES
 
-    function getChallenge(){
-        const numbersort = Math.floor(Math.random() * 50) + 1;
-        const sorteado =chalenges[numbersort]
-        console.log(sorteado)
-    }
    
 
-useEffect(() => {
-    getChallenge()
-})
+
+
+
 
     function handleFocus(newFocus: number) {
         setNewFocus(newFocus);
@@ -287,6 +298,62 @@ useEffect(() => {
     }, [newFocus, newShort, newLong])
 
 
+
+useEffect(() => {
+    localStorage.setItem("Points", JSON.stringify(myPoints));
+}, [myPoints])
+
+
+    function getChallenge() {
+        const numbersort = Math.floor(Math.random() * 50) + 1;
+        const sorteado = chalenges[numbersort];
+        setCurrentChallenge(sorteado);
+        console.log(currentChallenge.challenge)
+        console.log(currentChallenge.points)
+    }
+
+    // useEffect(() => {
+    //     if (!focus && !short && !long) {
+    //         getChallenge();
+    //     }
+    // }, []);
+
+
+
+    function GetPoints() {
+        setMyPoints((prevMyPoints) => prevMyPoints + currentChallenge.points)
+        localStorage.setItem("Points", JSON.stringify(myPoints));
+        alert(`Pegou ${currentChallenge.points} TOTAL = ${myPoints}`)
+
+        setChallengeCompleted(false)
+        console.log('PONTOS = ' + myPoints )
+
+        
+        if (stage < 4) {
+            setShort(true)
+            setFocus(false)
+            setLong(false)
+            console.log(stage)
+            setStage((prevStage) => prevStage + 1)
+            setRunning(false)
+        }
+
+        else if (stage === 4) {
+            setFocus(false)
+            setShort(false)
+            setLong(true)
+            console.log(stage)
+            setStage(1)
+            setRunning(false)
+        }
+
+    }
+    // useEffect(() => {
+    //     console.log('challengeCompleted = ' + challengeCompleted )
+    // }, [challengeCompleted])
+
+
+
     return (
         <>
             <Header
@@ -302,6 +369,13 @@ useEffect(() => {
             />
             <div className={`${styles.containerHome} ${styles[theme]}`}>
 
+                <p>Level: 3 {myPoints}/250</p>
+
+                {
+                    (!focus && !short && !long) ?
+                <h3>Desafio: {currentChallenge.challenge} - {currentChallenge.points}  Pontos: </h3> 
+                : null
+                }
 
                 <CardTimer
                     theme={theme}
@@ -317,8 +391,11 @@ useEffect(() => {
                     FocusTimer={() => FocusTimer()}
                     ShortTimer={() => ShortTimer()}
                     LongTimer={() => LongTimer()}
-                    Short={short} 
-                    ChallengeCompleted={false} />
+                    Short={short}
+                    ChallengeCompleted={false}
+                    GetPoints={() => GetPoints()}
+                />
+
 
             </div>
         </>

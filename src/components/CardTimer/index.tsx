@@ -18,6 +18,8 @@ interface CardtimerProps {
     ShortTimer: () => void;
     LongTimer: () => void;
 
+    GetPoints: () => void;
+
     Short: boolean;
     theme: string;
 
@@ -28,7 +30,7 @@ export default function CardTimer({ Minutes, ShortBreak,
     LongBreak, Seconds,
     Running, Pause, Start, Reload,
     FocusTimer, ShortTimer, LongTimer,
-    Short, theme, ChallengeCompleted
+    Short, theme, ChallengeCompleted, GetPoints
 }: CardtimerProps) {
     return (
         <div className={`${styles.cardContainer} ${styles[theme]}`}>
@@ -74,7 +76,7 @@ export default function CardTimer({ Minutes, ShortBreak,
 
 {
     (Minutes === 0 && Seconds === 0 && !Running) ? (
-        <button className={styles.play} onClick={Reload}>GetChallenge</button>
+        <button className={styles.play} onClick={GetPoints}>GetChallenge</button>
     ) : null
 }
 
