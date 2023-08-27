@@ -14,11 +14,47 @@
         font-size: 24px;
         color: var(--white);
     }
-    
 
-    
-  
+    .progress {
+        color: var(--white);
+        font-weight: bold;
+        font-size: 24px;
+        margin-bottom: 10px;
+
+        .wrapper {
+            background-color: var(--success);
+
+
+            .container { // container progress
+                background-color: pink;
+
+
+                .barCompleted {
+                    background-color: var(--success);
+                    display: flex;
+                    justify-content: center;
+
+                    
+                    .label{
+                        color: black;
+                        text-align: center;
+                        align-self: center;
+                        font-size: 20px;
+                    }
+
+
+                }
+
+            }
+
+        }
+
+    }
+
+
+
 }
+
 
 .focus {
     background-color: var(--primary);

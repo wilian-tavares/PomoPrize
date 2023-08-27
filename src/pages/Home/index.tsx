@@ -7,6 +7,9 @@ import Header from "../../components/Header";
 
 import chalenges from "../../service/challenges";
 
+import ProgressBar from "@ramonak/react-progress-bar";
+
+
 interface CurrentChallengeProps {
     challenge: string;
     points: number;
@@ -61,6 +64,13 @@ export default function Home() {
 
     const [theme, setTheme] = useState<string>('')
 
+    const [challengeCompleted, setChallengeCompleted] = useState<boolean>(true);
+
+    const [currentChallenge, setCurrentChallenge] = useState<CurrentChallengeProps>({
+        challenge: '',
+        points: 0,
+    })
+
 
     // pointes
 
@@ -70,16 +80,51 @@ export default function Home() {
             return JSON.parse(myPointsMemory) || 0;
         }
         return 0;
-
-
     })
+    // nextLevel = dificuldade * (levelAtual ** 1.5)
+    // nextLevel = 100 * (levelAtual)
+    const [currentLevel, setCurrentLevel] = useState<number>(() => {
+        const currentLevelMemory = localStorage.getItem("Level")
+        if (currentLevelMemory != null) {
+            return JSON.parse(currentLevelMemory)
+        }
+        return 1;
+    });
 
-    const [challengeCompleted, setChallengeCompleted] = useState<boolean>(true);
 
-    const [currentChallenge, setCurrentChallenge] = useState<CurrentChallengeProps>({
-        challenge: '',
-        points: 0,
-    })
+    const [forNextLevel, setForNextLevel] = useState<number>(() => {
+        const forNextLevelMemory = localStorage.getItem("NextLevel")
+        if(forNextLevelMemory != null){
+            return JSON.parse(forNextLevelMemory)
+        }
+        return 0;
+    });
+
+    const [progress, setProgress] = useState<number>(0)
+
+    useEffect(() => {
+        if (myPoints >= forNextLevel) {
+            setMyPoints(myPoints - forNextLevel)
+            setCurrentLevel((prevState) => prevState + 1)
+            setForNextLevel(Math.round(100 * (currentLevel ** 1.5)))
+        }
+    }, [myPoints, currentLevel, forNextLevel])
+
+    useEffect(() => {
+        setProgress(Math.round((myPoints / forNextLevel) * 100))
+        localStorage.setItem('NextLevel', JSON.stringify(forNextLevel))
+        localStorage.setItem("Level", JSON.stringify(currentLevel))
+
+
+    }, [myPoints, forNextLevel, currentLevel])
+
+
+
+console.log("current level: " + currentLevel)
+console.log("oriximo nível em: " + forNextLevel)
+
+console.log("current level" + currentLevel)
+
 
 
     // funções Timer
@@ -208,7 +253,7 @@ export default function Home() {
             setShort(false)
             setLong(false)
             getChallenge()
-
+            
             console.log('Acabou o FOCUS > SHORT')
             console.log(stage)
             setStage((prevStage) => prevStage + 1)
@@ -271,11 +316,6 @@ export default function Home() {
 
     // CHALLENGES
 
-   
-
-
-
-
 
     function handleFocus(newFocus: number) {
         setNewFocus(newFocus);
@@ -299,9 +339,9 @@ export default function Home() {
 
 
 
-useEffect(() => {
-    localStorage.setItem("Points", JSON.stringify(myPoints));
-}, [myPoints])
+    useEffect(() => {
+        localStorage.setItem("Points", JSON.stringify(myPoints));
+    }, [myPoints])
 
 
     function getChallenge() {
@@ -312,23 +352,19 @@ useEffect(() => {
         console.log(currentChallenge.points)
     }
 
-    // useEffect(() => {
-    //     if (!focus && !short && !long) {
-    //         getChallenge();
-    //     }
-    // }, []);
+  
 
 
 
     function GetPoints() {
         setMyPoints((prevMyPoints) => prevMyPoints + currentChallenge.points)
         localStorage.setItem("Points", JSON.stringify(myPoints));
-        alert(`Pegou ${currentChallenge.points} TOTAL = ${myPoints}`)
+        //alert(`Pegou ${currentChallenge.points} TOTAL = ${myPoints}`)
 
         setChallengeCompleted(false)
-        console.log('PONTOS = ' + myPoints )
+        console.log('PONTOS = ' + myPoints)
 
-        
+
         if (stage < 4) {
             setShort(true)
             setFocus(false)
@@ -354,6 +390,8 @@ useEffect(() => {
 
 
 
+
+
     return (
         <>
             <Header
@@ -365,16 +403,42 @@ useEffect(() => {
                 newFocus={newFocus}
                 newShort={newShort}
                 newLong={newLong}
-
             />
+
             <div className={`${styles.containerHome} ${styles[theme]}`}>
 
-                <p>Level: 3 {myPoints}/250</p>
+                <div className={styles.progress}>
+
+                    <p>Level: {currentLevel} {myPoints}/{forNextLevel}</p>
+                    <ProgressBar
+                    // className={styles.wrapper}
+                    // barContainerClassName={styles.container}
+                    // completedClassName={styles.barCompleted}
+                    // labelClassName={styles.label}
+                        
+
+                        completed={progress}
+                        height="20px"
+                        width="200px"
+                        bgColor='#4ECC39'
+                        borderRadius="8px"
+
+                        // labelSize='25px'
+                     
+                        labelAlignment="right"
+                        baseBgColor="white"
+                        labelColor="black"
+                        
+
+                    />
+
+                </div>
+
 
                 {
                     (!focus && !short && !long) ?
-                <h3>Desafio: {currentChallenge.challenge} - {currentChallenge.points}  Pontos: </h3> 
-                : null
+                        <h3>Desafio: {currentChallenge.challenge} - {currentChallenge.points}  Pontos: </h3>
+                        : null
                 }
 
                 <CardTimer
