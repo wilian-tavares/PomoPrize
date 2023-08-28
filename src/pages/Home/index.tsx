@@ -94,7 +94,7 @@ export default function Home() {
 
     const [forNextLevel, setForNextLevel] = useState<number>(() => {
         const forNextLevelMemory = localStorage.getItem("NextLevel")
-        if(forNextLevelMemory != null){
+        if (forNextLevelMemory != null) {
             return JSON.parse(forNextLevelMemory)
         }
         return 100;
@@ -121,8 +121,8 @@ export default function Home() {
 
 
 
-console.log("Current level: " + currentLevel)
-console.log("Poriximo nível em: " + forNextLevel)
+    console.log("Current level: " + currentLevel)
+    console.log("Poriximo nível em: " + forNextLevel)
 
 
 
@@ -254,7 +254,7 @@ console.log("Poriximo nível em: " + forNextLevel)
             setShort(false)
             setLong(false)
             getChallenge()
-            
+
             console.log('Acabou o FOCUS > SHORT')
             console.log(stage)
             setStage((prevStage) => prevStage + 1)
@@ -353,7 +353,7 @@ console.log("Poriximo nível em: " + forNextLevel)
         console.log(currentChallenge.points)
     }
 
-  
+
 
 
 
@@ -410,13 +410,17 @@ console.log("Poriximo nível em: " + forNextLevel)
 
                 <div className={styles.progress}>
 
-                    <p>Level: {currentLevel} {myPoints}/{forNextLevel}</p>
+                    <div className={styles.shieldLevel}>
+                        <p>Level: {currentLevel}</p>
+                        <p>{myPoints}/{forNextLevel}</p>
+                    </div>
+
                     <ProgressBar
-                    // className={styles.wrapper}
-                    // barContainerClassName={styles.container}
-                    // completedClassName={styles.barCompleted}
-                    // labelClassName={styles.label}
-                        
+                        // className={styles.wrapper}
+                        // barContainerClassName={styles.container}
+                        // completedClassName={styles.barCompleted}
+                        // labelClassName={styles.label}
+
 
                         completed={progress}
                         height="20px"
@@ -425,11 +429,11 @@ console.log("Poriximo nível em: " + forNextLevel)
                         borderRadius="8px"
 
                         // labelSize='25px'
-                     
+
                         labelAlignment="right"
                         baseBgColor="white"
                         labelColor="black"
-                        
+
 
                     />
 
