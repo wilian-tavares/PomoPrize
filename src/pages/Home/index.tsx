@@ -97,33 +97,34 @@ export default function Home() {
         if(forNextLevelMemory != null){
             return JSON.parse(forNextLevelMemory)
         }
-        return 0;
+        return 100;
     });
 
     const [progress, setProgress] = useState<number>(0)
 
     useEffect(() => {
         if (myPoints >= forNextLevel) {
-            setMyPoints(myPoints - forNextLevel)
-            setCurrentLevel((prevState) => prevState + 1)
-            setForNextLevel(Math.round(100 * (currentLevel ** 1.5)))
+            //setMyPoints(myPoints - forNextLevel)
+            setCurrentLevel((prevState) => prevState + 1);
+            console.log('passou aqui: ' + currentLevel);
+            // setForNextLevel(Math.round(100 * (currentLevel ** 1.5)));
+            setForNextLevel(Math.round(100 * ((currentLevel + 1) ** 1.5)));
+
         }
-    }, [myPoints, currentLevel, forNextLevel])
+    }, [myPoints, forNextLevel])
 
     useEffect(() => {
         setProgress(Math.round((myPoints / forNextLevel) * 100))
         localStorage.setItem('NextLevel', JSON.stringify(forNextLevel))
         localStorage.setItem("Level", JSON.stringify(currentLevel))
-
-
     }, [myPoints, forNextLevel, currentLevel])
 
 
 
-console.log("current level: " + currentLevel)
-console.log("oriximo nível em: " + forNextLevel)
+console.log("Current level: " + currentLevel)
+console.log("Poriximo nível em: " + forNextLevel)
 
-console.log("current level" + currentLevel)
+
 
 
 
@@ -161,8 +162,8 @@ console.log("current level" + currentLevel)
         setRunning(false)
         // alert('PAUSE')
     }
-    function Reload() {
 
+    function Reload() {
         if (focus === true && stage < 4) {
             setShort(true)
             setFocus(false)
