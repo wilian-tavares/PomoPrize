@@ -424,7 +424,7 @@ export default function Home() {
 
                         completed={progress}
                         height="20px"
-                        width="200px"
+                        max-width="200px"
                         bgColor='#4ECC39'
                         borderRadius="8px"
 

@@ -15,8 +15,12 @@
         color: var(--white);
     }
 
+   
     .progress {
+        max-width: 200px;
+        width: 80%;
         color: var(--white);
+
         font-weight: bold;
         font-size: 24px;
         margin-bottom: 10px;
@@ -24,7 +28,9 @@
         position: absolute;
         right: 94px;
         top: 50px;
+
         .shieldLevel {
+            width: 200px;
                 display: flex;
                 justify-content: space-between;  
         }
@@ -42,4 +48,27 @@
 
 .long {
     background-color: var(--success);
+}
+
+// media query
+
+@media (max-width: 800px) {
+    .progress {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        //top: 50px;
+    }
+}
+
+@media (max-width: 600px) {
+    .shieldLevel {      
+        flex-direction: column;
+        align-items: center;
+
+        p {
+            margin: 4px;
+        }
+
+    }
 }
