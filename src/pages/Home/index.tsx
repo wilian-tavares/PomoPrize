@@ -436,14 +436,16 @@ export default function Home() {
 
                 </div>
 
+                {/* <div className={styles.shieldChallenge}>
 
-                {
-                    (!focus && !short && !long) ?
-                        <h3>Desafio: {currentChallenge.challenge} - {currentChallenge.points}  Pontos: </h3>
-                        : null
-                }
+                    {
+                        (!focus && !short && !long) ?
+                            <h3>Desafio: {currentChallenge.challenge} - {currentChallenge.points}  Pontos: </h3>
+                            : null
+                    }
+                </div> */}
 
-               {/* <div  className={styles.cardTimerHome}>
+                {/* <div  className={styles.cardTimerHome}>
                     <CardTimer
                         theme={theme}
 
@@ -465,27 +467,34 @@ export default function Home() {
                </div> */}
 
 
-                    <CardTimer
-                        theme={theme}
+                <CardTimer
+                    theme={theme}
 
-                        Minutes={minutes}
-                        ShortBreak={shortBreak}
-                        LongBreak={longBreak}
-                        Seconds={seconds}
-                        Running={running}
-                        Start={() => Start()}
-                        Pause={() => Pause()}
-                        Reload={() => Reload()}
-                        FocusTimer={() => FocusTimer()}
-                        ShortTimer={() => ShortTimer()}
-                        LongTimer={() => LongTimer()}
-                        Short={short}
-                        ChallengeCompleted={false}
-                        GetPoints={() => GetPoints()}
-                    />
-              
+                    Minutes={minutes}
+                    ShortBreak={shortBreak}
+                    LongBreak={longBreak}
+                    Seconds={seconds}
+                    Running={running}
+                    Start={() => Start()}
+                    Pause={() => Pause()}
+                    Reload={() => Reload()}
+                    FocusTimer={() => FocusTimer()}
+                    ShortTimer={() => ShortTimer()}
+                    LongTimer={() => LongTimer()}
+                    Short={short}
+                    ChallengeCompleted={false}
+                    GetPoints={() => GetPoints()}
+                />
 
-                
+
+                <div className={styles.shieldChallenge}>
+
+                    {
+                        (!focus && !short && !long) ?
+                            <h3>Desafio: {currentChallenge.challenge} - {currentChallenge.points}  Pontos: </h3>
+                            : null
+                    }
+                </div>
 
 
             </div>

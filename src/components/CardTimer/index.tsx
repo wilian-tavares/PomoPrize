@@ -60,7 +60,7 @@ export default function CardTimer({ Minutes, ShortBreak,
 
 
             <div className={styles.shieldPlay}>
-                {/* <div className={styles.actionButtons}> */}
+                
 
 
                 {
@@ -89,7 +89,7 @@ export default function CardTimer({ Minutes, ShortBreak,
                     ) : null
                 }
 
-                {/* </div> */}
+              
             </div>
 
 
