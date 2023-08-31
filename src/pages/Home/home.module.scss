@@ -1,27 +1,21 @@
 .containerHome {
     height: calc(100vh - 70px);
     width: 100%;
-
     display: flex;
+
     flex-direction: column;
     align-items: center;
-
     position: relative;
 
     .shieldChallenge {
-
-      
             font-weight: bold;
             font-size: 24px;
             color: var(--white);
 
             max-width: 624px;
             width: 80%;
-            margin: 20px 0;
-  
-        
+            margin: 20px 0;      
     }
-
     .progress {
         width: 80%;
         max-width: 200px;
@@ -40,9 +34,7 @@
             justify-content: space-between;
         }
     }
-
 }
-
 
 .focus {
     background-color: var(--primary);
@@ -55,59 +47,32 @@
 .long {
     background-color: var(--success);
 }
-
 // media query
-
 @media (max-width: 800px) {
     .containerHome {
-
-        .shieldChallenge {
-            //position: absolute;
-            //top: 150px;
-           
-        }
-
         .progress {
-            //   position: inherit;
-            // left: 50%;
-            //  transform: translateX(-50%);
-            //position: static; /* Volte à posição normal */
-
             top: 20px;
             left: 50%;
             transform: translateX(-50%);
-        }
-
- 
-           
+        }      
     }
 }
 
 @media (max-width: 600px) {
    .containerHome {
-
        .shieldChallenge {
-        font-size: 18px;
-            
-           
+        font-size: 18px;       
         }
-   }
-    
+   }   
 }
 
-
-
 @media (max-width: 600px) {
-   
-    
     .shieldLevel {
         flex-direction: column;
         align-items: center;
-
         p {
             margin: 4px;
         }
-
     }
 }
 

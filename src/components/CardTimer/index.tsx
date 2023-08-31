@@ -30,7 +30,6 @@ interface buttonTextProps {
     long: string;
 }
 
-
 export default function CardTimer({ Minutes, ShortBreak,
     LongBreak, Seconds,
     Running, Pause, Start, Reload,
@@ -44,7 +43,6 @@ export default function CardTimer({ Minutes, ShortBreak,
         long: 'Long-Break'
     })
 
-
     return (
         <div className={`${styles.cardContainer} ${styles[theme]}`}>
             <div className={styles.shieldButtons}>
@@ -53,16 +51,10 @@ export default function CardTimer({ Minutes, ShortBreak,
                 <button onClick={LongTimer}></button>
             </div>
 
-
-
             <strong>{(Minutes < 10) ? `0${Minutes}` : Minutes} : {(Seconds < 10) ? `0${Seconds}` : Seconds}</strong>
-
-
 
             <div className={styles.shieldPlay}>
                 
-
-
                 {
                     (Minutes > 0 || Seconds > 0) && Running ? (
                         <button className={styles.play} onClick={Pause}>PAUSE</button>
@@ -87,16 +79,8 @@ export default function CardTimer({ Minutes, ShortBreak,
                             {<TbPlayerTrackNextFilled size='40' />}
                         </button>
                     ) : null
-                }
-
-              
+                }        
             </div>
-
-
-
-
-
-
         </div>
     )
 }

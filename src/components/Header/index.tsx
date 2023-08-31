@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import { AiOutlineClose, AiOutlineClockCircle } from 'react-icons/ai';
 
-
 interface HeaderProps {
     theme: string;
     newFocus: number;
@@ -14,12 +13,7 @@ interface HeaderProps {
     HandleFocus: (newMinutes: number) => void;
     HandleShort: (newShort: number) => void;
     HandleLong: (newLong: number) => void;
-
-  
- 
 }
-
-
 
 export default function Header({ theme, 
                                 HandleFocus, 
@@ -27,61 +21,34 @@ export default function Header({ theme,
                                 HandleLong, 
                                 newFocus, 
                                 newShort,
-                                newLong,
-                               
+                                newLong,                          
                             }: HeaderProps) {
 
-
-    const customStyles = {
-        content: {
-            
-            // backgroundColor: 'red',
-            // top: '50%',
-            // left: '50%',
-            // right: 'auto',
-            // bottom: 'auto',
-            //  marginRight: '-50%',
-            // transform: 'translate(-50%, -50%)',
-        },
-    };
+ 
     const [modalIsOpen, setIsOpen] = useState<boolean>(false);
 
     function openModal() {
         setIsOpen(true);
     }
 
-    function afterOpenModal() {
-        // references are now sync'd and can be accessed.
-
-    }
-
     function closeModal() {
         setIsOpen(false);
     }
-
-
 
     return (
         <div id={styles.header} className={styles[theme]}>
 
             <h1 id={styles.logo}>Pomofocus-XP</h1>
-
-
-
             <button onClick={openModal}>
                 Settings
             </button>
 
-
-
             <Modal className={styles.modal}
                 isOpen={modalIsOpen}
-                onAfterOpen={afterOpenModal}
                 onRequestClose={closeModal}
-                style={customStyles}
+
                 contentLabel="Example Modal"
             >
-
                 <div className={styles.closeModal}> {/* depois olhar isso*/}
                     <button onClick={closeModal} >
                         <AiOutlineClose size={50} />
@@ -105,7 +72,6 @@ export default function Header({ theme,
                                     onChange={(e) => HandleFocus(Number(e.target.value))}
                                 />
                             </div>
-
                             <div>
                                 <p>Short-Break</p>
                                 <input 
@@ -115,7 +81,6 @@ export default function Header({ theme,
                                     onChange={(e) => HandleShort(Number(e.target.value))} 
                                 />
                             </div>
-
                             <div>
                                 <p>Lon-Break</p>
                                 <input 
@@ -126,11 +91,8 @@ export default function Header({ theme,
                                 />
                             </div>
                         </div>
-
                     </div>
                 </div>
-
-
             </Modal>
         </div>
     )
