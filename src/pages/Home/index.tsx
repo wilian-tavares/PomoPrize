@@ -409,7 +409,6 @@ export default function Home() {
             <div className={`${styles.containerHome} ${styles[theme]}`}>
 
                 <div className={styles.progress}>
-
                     <div className={styles.shieldLevel}>
                         <p>Level: {currentLevel}</p>
                         <p>{myPoints}/{forNextLevel}</p>
@@ -433,8 +432,6 @@ export default function Home() {
                         labelAlignment="right"
                         baseBgColor="white"
                         labelColor="black"
-
-
                     />
 
                 </div>
@@ -446,24 +443,49 @@ export default function Home() {
                         : null
                 }
 
-                <CardTimer
-                    theme={theme}
+               {/* <div  className={styles.cardTimerHome}>
+                    <CardTimer
+                        theme={theme}
 
-                    Minutes={minutes}
-                    ShortBreak={shortBreak}
-                    LongBreak={longBreak}
-                    Seconds={seconds}
-                    Running={running}
-                    Start={() => Start()}
-                    Pause={() => Pause()}
-                    Reload={() => Reload()}
-                    FocusTimer={() => FocusTimer()}
-                    ShortTimer={() => ShortTimer()}
-                    LongTimer={() => LongTimer()}
-                    Short={short}
-                    ChallengeCompleted={false}
-                    GetPoints={() => GetPoints()}
-                />
+                        Minutes={minutes}
+                        ShortBreak={shortBreak}
+                        LongBreak={longBreak}
+                        Seconds={seconds}
+                        Running={running}
+                        Start={() => Start()}
+                        Pause={() => Pause()}
+                        Reload={() => Reload()}
+                        FocusTimer={() => FocusTimer()}
+                        ShortTimer={() => ShortTimer()}
+                        LongTimer={() => LongTimer()}
+                        Short={short}
+                        ChallengeCompleted={false}
+                        GetPoints={() => GetPoints()}
+                    />
+               </div> */}
+
+
+                    <CardTimer
+                        theme={theme}
+
+                        Minutes={minutes}
+                        ShortBreak={shortBreak}
+                        LongBreak={longBreak}
+                        Seconds={seconds}
+                        Running={running}
+                        Start={() => Start()}
+                        Pause={() => Pause()}
+                        Reload={() => Reload()}
+                        FocusTimer={() => FocusTimer()}
+                        ShortTimer={() => ShortTimer()}
+                        LongTimer={() => LongTimer()}
+                        Short={short}
+                        ChallengeCompleted={false}
+                        GetPoints={() => GetPoints()}
+                    />
+              
+
+                
 
 
             </div>
