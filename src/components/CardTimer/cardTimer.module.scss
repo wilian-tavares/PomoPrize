@@ -16,6 +16,7 @@
     strong {
         font-size: 48px;
         color: var(--white);
+        margin-top: 30px;
     }
 
     .shieldPlay {
@@ -205,7 +206,36 @@
 
         .play {
             font-size: 36px;
+            color: blue;
 
+        }
+    }
+}
+
+@media(max-width: 300px) {
+
+    .cardContainer {
+        .shieldPlay{
+
+            .play {
+                
+                font-size: 18px;
+    
+            }
+        }
+    }
+}
+
+@media(max-width: 250px) {
+
+    .cardContainer {
+        .shieldPlay{
+
+            .play {
+                
+                font-size: 14px;
+    
+            }
         }
     }
 }

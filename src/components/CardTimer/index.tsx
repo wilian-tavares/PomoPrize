@@ -54,38 +54,40 @@ export default function CardTimer({ Minutes, ShortBreak,
             </div>
 
 
+
             <strong>{(Minutes < 10) ? `0${Minutes}` : Minutes} : {(Seconds < 10) ? `0${Seconds}` : Seconds}</strong>
+
 
 
             <div className={styles.shieldPlay}>
                 {/* <div className={styles.actionButtons}> */}
 
 
-                    {
-                        (Minutes > 0 || Seconds > 0) && Running ? (
-                            <button className={styles.play} onClick={Pause}>PAUSE</button>
-                        ) : (
-                            (!Running && Minutes === 0 && Seconds === 0) ? null : (
-                                Running ? null : (
-                                    <button className={styles.play} onClick={Start}>START</button>
-                                )
+                {
+                    (Minutes > 0 || Seconds > 0) && Running ? (
+                        <button className={styles.play} onClick={Pause}>PAUSE</button>
+                    ) : (
+                        (!Running && Minutes === 0 && Seconds === 0) ? null : (
+                            Running ? null : (
+                                <button className={styles.play} onClick={Start}>START</button>
                             )
                         )
-                    }
+                    )
+                }
 
-                    {
-                        (Minutes === 0 && Seconds === 0 && !Running) ? (
-                            <button className={styles.play} onClick={GetPoints}>Complete</button>
-                        ) : null
-                    }
+                {
+                    (Minutes === 0 && Seconds === 0 && !Running) ? (
+                        <button className={styles.play} onClick={GetPoints}>Complete</button>
+                    ) : null
+                }
 
-                    {
-                        Running ? (
-                            <button className={styles.reload} onClick={Reload}>
-                                {<TbPlayerTrackNextFilled size='40' />}
-                            </button>
-                        ) : null
-                    }
+                {
+                    Running ? (
+                        <button className={styles.reload} onClick={Reload}>
+                            {<TbPlayerTrackNextFilled size='40' />}
+                        </button>
+                    ) : null
+                }
 
                 {/* </div> */}
             </div>
