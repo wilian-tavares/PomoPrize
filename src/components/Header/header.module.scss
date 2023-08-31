@@ -2,7 +2,7 @@
     // background-color: var(--primary2); // focus
     //background-color: var(--blue2);    // short
     //background-color: var(--success);    // long
-    
+
     height: 70px;
     width: 100%;
     display: flex;
@@ -12,8 +12,9 @@
     #logo {
         margin-left: 94px;
         color: var(--white);
-        
+
     }
+
     button {
         margin-right: 94px;
         width: 100px;
@@ -46,24 +47,24 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
+
     align-items: center;
     max-width: 1000px;
     height: 700px;
-    margin:  auto;
+    margin: auto;
     margin-top: 100px;
 
     align-self: center;
-    
+
 
     .closeModal {
-        
+
         position: absolute;
         top: 30px;
         right: 30px;
         width: 50px;
         height: 50px;
-        
+
         button {
             background-color: transparent;
             border: none;
@@ -74,17 +75,19 @@
 
     .shieldModal {
         background-color: var(--white);
-        width: 300px;
+        width: 80%;
+        max-width: 300px;
         height: 300px;
         padding-top: 20px;
         padding-left: 10px;
 
+
         .titleModal {
-             p {
-                 line-height: 30px;
-                 display: flex;
-                 font-weight: bold; 
-             }
+            p {
+                line-height: 30px;
+                display: flex;
+                font-weight: bold;
+            }
         }
 
         .shieldInputs {
@@ -96,21 +99,53 @@
             input {
                 margin-top: 5px;
                 width: 85px;
+                height: 30px;
+
                 font-weight: bold;
+
+
+
             }
         }
-        
+
     }
 }
 
-@media(max-width: 600px){
-    #header  {
+@media(max-width: 600px) {
+    #header {
         flex-direction: column;
         align-items: center;
-        justify-content:  space-between;
+        justify-content: space-between;
 
         #logo {
             margin-left: 0;
         }
     }
+}
+
+
+@media(max-width: 350px) {
+
+
+
+    .shieldInputs {
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+            flex-direction: column;
+
+        margin-top: 27px;
+
+        input {
+            margin-top: 5px;
+            width: 85px;
+            height: 30px;
+
+            font-weight: bold;
+
+
+
+        }
+    }
+
 }
