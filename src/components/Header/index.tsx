@@ -13,6 +13,7 @@ interface HeaderProps {
     HandleFocus: (newMinutes: number) => void;
     HandleShort: (newShort: number) => void;
     HandleLong: (newLong: number) => void;
+    DeletProgress: () => void;
 }
 
 export default function Header({ theme, 
@@ -21,7 +22,8 @@ export default function Header({ theme,
                                 HandleLong, 
                                 newFocus, 
                                 newShort,
-                                newLong,                          
+                                newLong,     
+                                DeletProgress                     
                             }: HeaderProps) {
 
  
@@ -90,6 +92,10 @@ export default function Header({ theme,
                                     onChange={(e) => HandleLong(Number(e.target.value))}
                                 />
                             </div>
+                        </div>
+
+                        <div className={styles.buttonDelet}>
+                            <button onClick={DeletProgress}>Deletar Progresso</button>
                         </div>
                     </div>
                 </div>

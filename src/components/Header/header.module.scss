@@ -46,7 +46,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+
     max-width: 1000px;
     height: 700px;
     margin: auto;
@@ -98,6 +98,29 @@
                 width: 85px;
                 height: 30px;
                 font-weight: bold;
+            }
+        }
+
+        .buttonDelet {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+
+            height: 30px;
+            border-radius: 20px;
+
+            button {
+                border-radius: 8px;
+                background-color: var(--primary2);
+                color: var(--white);
+
+                font-weight: bold;
+                height: 30px;
+                width: 80%;
+
+                max-width: 200px;
+                cursor: pointer;
+                border-radius: 8px;
             }
         }
     }

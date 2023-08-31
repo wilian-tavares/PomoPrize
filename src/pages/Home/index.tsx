@@ -164,6 +164,12 @@ export default function Home() {
         }
     }
 
+    function DeletProgress(){
+        setMyPoints(0);
+        setCurrentLevel(0);
+        setForNextLevel(100);
+    }
+    
     useEffect(() => {
         if (running) {
             const interval = setInterval(() => {
@@ -317,8 +323,8 @@ export default function Home() {
 
                 newFocus={newFocus}
                 newShort={newShort}
-                newLong={newLong}
-            />
+                newLong={newLong} 
+                DeletProgress={()=> DeletProgress() }            />
 
             <div className={`${styles.containerHome} ${styles[theme]}`}>
                 <div className={styles.progress}>
