@@ -7,6 +7,9 @@ import Header from "../../components/Header";
 import chalenges from "../../service/challenges";
 import ProgressBar from "@ramonak/react-progress-bar";
 
+import soundClick from '../../assets/clickButton.mp3'
+import soundAlarm from '../../assets/alarm.mp3';
+
 interface CurrentChallengeProps {
     challenge: string;
     points: number;
@@ -119,6 +122,7 @@ export default function Home() {
 
     function Start() {
         setRunning(true);
+        new Audio(soundClick).play()
     }
     function Pause() {
         setRunning(false);
@@ -161,7 +165,9 @@ export default function Home() {
         setMyPoints(0);
         setCurrentLevel(1);
         setForNextLevel(100);
+
         setStage(1);
+        new Audio(soundClick).play()
     }
     
     useEffect(() => {
@@ -207,6 +213,7 @@ export default function Home() {
             setFocus(false);
             setShort(false);
             setLong(false);
+            new Audio(soundAlarm).play()
 
             getChallenge();
             setStage((prevStage) => prevStage + 1);
@@ -217,7 +224,8 @@ export default function Home() {
             setFocus(false);
             setShort(false);
             setLong(true);
- 
+
+            new Audio(soundAlarm).play()
             setStage(1);
             setRunning(false);
         }
