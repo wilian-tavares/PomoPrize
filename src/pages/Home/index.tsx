@@ -89,7 +89,6 @@ export default function Home() {
         if (myPoints >= forNextLevel) {
             //setMyPoints(myPoints - forNextLevel)
             setCurrentLevel((prevState) => prevState + 1);
-            console.log('passou aqui: ' + currentLevel);
             setForNextLevel(Math.round(100 * ((currentLevel + 1) ** 1.5)));
         }
     }, [myPoints, forNextLevel])
@@ -131,7 +130,6 @@ export default function Home() {
             setFocus(false);
             setLong(false);
 
-            console.log(stage);
             setStage((prevStage) => prevStage + 1);
             setRunning(false);
         }
@@ -141,7 +139,6 @@ export default function Home() {
             setShort(false);
             setLong(true);
 
-            console.log(stage);
             setStage(1);
             setRunning(false);
         }
@@ -150,16 +147,12 @@ export default function Home() {
             setFocus(true);
             setLong(false);
             setShort(false);
-
-            console.log(stage);
             setRunning(false);
         }
         else if (long === true) {
             setFocus(true);
             setLong(false);
             setShort(false);
-
-            console.log(stage);
             setRunning(false);
         }
     }
@@ -180,7 +173,7 @@ export default function Home() {
                     setSeconds(59);
                     setMinutes((prevMinutes) => prevMinutes - 1);
                 }
-            }, 10); 
+            }, 1000); 
 
             if (seconds === 0 && minutes === 0) {
                 clearInterval(interval);
@@ -223,7 +216,7 @@ export default function Home() {
         else if (seconds === 0 && minutes === 0 && focus === true && stage === 4) {
             setFocus(false);
             setShort(false);
-            setLong(false);
+            setLong(true);
  
             setStage(1);
             setRunning(false);
@@ -284,8 +277,6 @@ export default function Home() {
         const numbersort = Math.floor(Math.random() * 50) + 1;
         const sorteado = chalenges[numbersort];
         setCurrentChallenge(sorteado);
-        console.log(currentChallenge.challenge);
-        console.log(currentChallenge.points);
     }
 
     function GetPoints() {
@@ -293,22 +284,19 @@ export default function Home() {
         localStorage.setItem("Points", JSON.stringify(myPoints));
         setChallengeCompleted(false)
 
-        if (stage < 4) {
+        if (stage <= 4) {
             setShort(true);
             setFocus(false);
             setLong(false);
-
-            //setStage((prevStage) => prevStage + 1);
             setRunning(false);
         }
 
-        else if (stage === 4) {
+        else if (stage > 4) {
             setFocus(false);
             setShort(false);
             setLong(true);
 
-            console.log(stage);
-            //setStage(1);
+            setStage(1);
             setRunning(false);
         }
 
