@@ -40,7 +40,7 @@ export default function Header({ theme,
     return (
         <div id={styles.header} className={styles[theme]}>
 
-            <h1 id={styles.logo}>Pomofocus-XP</h1>
+            <h1 id={styles.logo}>PomoPrize</h1>
             <button onClick={openModal}>
                 Settings
             </button>

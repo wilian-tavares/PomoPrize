@@ -166,8 +166,9 @@ export default function Home() {
 
     function DeletProgress(){
         setMyPoints(0);
-        setCurrentLevel(0);
+        setCurrentLevel(1);
         setForNextLevel(100);
+        setStage(1);
     }
     
     useEffect(() => {
@@ -179,7 +180,7 @@ export default function Home() {
                     setSeconds(59);
                     setMinutes((prevMinutes) => prevMinutes - 1);
                 }
-            }, 1000); 
+            }, 10); 
 
             if (seconds === 0 && minutes === 0) {
                 clearInterval(interval);
@@ -297,7 +298,7 @@ export default function Home() {
             setFocus(false);
             setLong(false);
 
-            setStage((prevStage) => prevStage + 1);
+            //setStage((prevStage) => prevStage + 1);
             setRunning(false);
         }
 
@@ -307,7 +308,7 @@ export default function Home() {
             setLong(true);
 
             console.log(stage);
-            setStage(1);
+            //setStage(1);
             setRunning(false);
         }
 
@@ -343,6 +344,8 @@ export default function Home() {
                         baseBgColor="white"
                         labelColor="black"
                     />
+                     
+                        <p>Stage: {stage}/4</p>
                 </div>
                 <CardTimer
                     theme={theme}
