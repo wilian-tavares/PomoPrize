@@ -326,13 +326,14 @@ export default function Home() {
                 DeletProgress={()=> DeletProgress() }            />
 
             <div className={`${styles.containerHome} ${styles[theme]}`}>
-                <div className={styles.progress}>
+                <div className={styles.progress} >
                     <div className={styles.shieldLevel}>
                         <p>Level: {currentLevel}</p>
                         <p>{myPoints}/{forNextLevel}</p>
                     </div>
 
-                    <ProgressBar
+                    <ProgressBar 
+                          aria-label="Barra de Progresso de Pontuação"
                         completed={progress}
                         height="20px"
                         max-width="200px"
@@ -341,6 +342,7 @@ export default function Home() {
                         labelAlignment="right"
                         baseBgColor="white"
                         labelColor="black"
+                        
                     />
                      
                         <p>Stage: {stage}/4</p>

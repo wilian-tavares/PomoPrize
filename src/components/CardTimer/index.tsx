@@ -46,9 +46,9 @@ export default function CardTimer({ Minutes, ShortBreak,
     return (
         <div className={`${styles.cardContainer} ${styles[theme]}`}>
             <div className={styles.shieldButtons}>
-                <button onClick={FocusTimer}></button>
-                <button onClick={ShortTimer}></button>
-                <button onClick={LongTimer}></button>
+                <button onClick={FocusTimer} aria-label="PomoPrize"></button>
+                <button onClick={ShortTimer} aria-label="Short-Break"></button>
+                <button onClick={LongTimer} aria-label="Long-Break"></button>
             </div>
 
             <strong>{(Minutes < 10) ? `0${Minutes}` : Minutes} : {(Seconds < 10) ? `0${Seconds}` : Seconds}</strong>
