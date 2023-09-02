@@ -10,6 +10,7 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import soundClick from '../../assets/clickButton.mp3'
 import soundAlarm from '../../assets/alarm.mp3';
 
+
 interface CurrentChallengeProps {
     challenge: string;
     points: number;
@@ -309,6 +310,7 @@ export default function Home() {
         }
 
     }
+
 
     return (
         <>
